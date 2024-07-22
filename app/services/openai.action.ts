@@ -12,6 +12,7 @@ export const createAnswer = async (_: any, formData: FormData) => {
 
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
+    response_format: { type: "json_object" },
     messages: [
       ...prompts,
       {
@@ -20,6 +21,5 @@ export const createAnswer = async (_: any, formData: FormData) => {
       },
     ],
   });
-
   return response.choices[0].message.content || "";
 };

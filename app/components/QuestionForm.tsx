@@ -2,31 +2,26 @@
 
 import { useFormState } from "react-dom";
 import { createAnswer } from "../services/openai.action";
-import { useState } from "react";
+import { Answer } from "./Answer";
+import { QuestionTextarea as Textarea } from "./QuestionTextarea";
+import { SendButton } from "./SendButton";
 
 export const QuestionForm = () => {
-  const [content, setContent] = useState("");
   const [answer, dispatch] = useFormState(createAnswer, "");
 
   return (
-    <div>
-      <form action={dispatch}>
-        <textarea
+    <form action={dispatch}>
+      <div className="flex flex-col gap-2">
+        <Textarea
+          className="outline-none border border-solid border-black rounded-lg p-2 max-w-80"
           name="situation"
-          placeholder="현재 상황을 입력하세요."
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-          required
+          placeholder="현재 어떤 느낌의 음식이 먹고싶나요?"
         />
-        <button type="submit">버튼</button>
-      </form>
-      <button
-        type="button"
-        onClick={() => console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY)}
-      >
-        클릭
-      </button>
-      <span>{answer}</span>
-    </div>
+        <SendButton />
+      </div>
+      <div>
+        <Answer answer={answer} />
+      </div>
+    </form>
   );
 };
