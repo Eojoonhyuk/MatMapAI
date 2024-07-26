@@ -22,20 +22,24 @@ export const Answer = ({ answer }: AnswerProps) => {
       {pending ? (
         <span>답변 생성중</span>
       ) : (
-        <ul className="flex gap-5">
+        <ul className="flex flex-col gap-3">
           {foods.food.map((food) => (
             <li
-              className="w-fit border border-solid border-black rounded-lg p-3"
+              className="w-fit border border-solid border-black rounded-lg"
               key={food}
             >
-              <button type="button" onClick={() => setSelectedFood(food)}>
+              <button
+                className="p-3"
+                type="button"
+                onClick={() => setSelectedFood(food)}
+              >
                 {food}
               </button>
             </li>
           ))}
         </ul>
       )}
-      <KakaoMap />
+      {!!selectedFood && <KakaoMap keyword={selectedFood} />}
     </div>
   );
 };
