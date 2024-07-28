@@ -24,13 +24,13 @@ export const KakaoMap = ({ keyword }: KakaoMapProps) => {
 
           const locPostion = new window.kakao.maps.LatLng(lat, lon);
           const message = `<div>여기에 계신가요?</div>`;
+          console.log(locPostion);
 
           displayMarker(locPostion, message);
         });
       } else {
         const locPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
         const message = "geolocation을 사용할수 없어요..";
-
         displayMarker(locPosition, message);
       }
 

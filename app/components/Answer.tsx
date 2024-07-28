@@ -18,18 +18,18 @@ export const Answer = ({ answer }: AnswerProps) => {
   const foods: Foods = JSON.parse(answer);
 
   return (
-    <div>
+    <div className="flex flex-col gap-3">
       {pending ? (
         <span>답변 생성중</span>
       ) : (
-        <ul className="flex flex-col gap-3">
+        <ul className="flex gap-3 flex-wrap w-96">
           {foods.food.map((food) => (
             <li
-              className="w-fit border border-solid border-black rounded-lg"
               key={food}
+              className="w-fit border rounded-lg bg-slate-100 text-sm"
             >
               <button
-                className="p-3"
+                className="p-2"
                 type="button"
                 onClick={() => setSelectedFood(food)}
               >
