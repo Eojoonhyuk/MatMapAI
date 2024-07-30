@@ -21,7 +21,7 @@ export const QuestionForm = () => {
         />
         <SendButton />
       </div>
-      <div>{!!answer && <Answer answer={answer} />}</div>
+      {!!answer && <Answer answer={answer} />}
     </form>
   );
 };

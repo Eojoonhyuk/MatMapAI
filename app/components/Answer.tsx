@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useFormStatus } from "react-dom";
-import { KakaoMap } from "./KakaoMap";
 
 interface AnswerProps {
   answer: string;
@@ -14,8 +13,8 @@ interface Foods {
 
 export const Answer = ({ answer }: AnswerProps) => {
   const { pending } = useFormStatus();
-  const [selectedFood, setSelectedFood] = useState("");
   const foods: Foods = JSON.parse(answer);
+  const router = useRouter();
 
   return (
     <div className="flex flex-col gap-3">
@@ -31,7 +30,7 @@ export const Answer = ({ answer }: AnswerProps) => {
               <button
                 className="p-2"
                 type="button"
-                onClick={() => setSelectedFood(food)}
+                onClick={() => router.push("/map")}
               >
                 {food}
               </button>
@@ -39,7 +38,6 @@ export const Answer = ({ answer }: AnswerProps) => {
           ))}
         </ul>
       )}
-      {!!selectedFood && <KakaoMap keyword={selectedFood} />}
     </div>
   );
 };

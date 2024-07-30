@@ -52,5 +52,5 @@ export const KakaoMap = ({ keyword }: KakaoMapProps) => {
     });
   }, [keyword]);
 
-  return <div ref={mapRef} className="w-full h-80" />;
+  return <div ref={mapRef} className="w-full h-screen" />;
 };
