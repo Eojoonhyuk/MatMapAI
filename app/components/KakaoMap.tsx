@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface KakaoMapProps {
   keyword: string;
@@ -23,25 +23,21 @@ export const KakaoMap = ({ keyword }: KakaoMapProps) => {
           const lon = position.coords.longitude;
 
           const locPostion = new window.kakao.maps.LatLng(lat, lon);
-          const message = `<div>여기에 계신가요?</div>`;
-          console.log(locPostion);
 
-          displayMarker(locPostion, message);
+          displayMarker(locPostion);
         });
       } else {
         const locPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
-        const message = "geolocation을 사용할수 없어요..";
-        displayMarker(locPosition, message);
+        displayMarker(locPosition);
       }
 
-      function displayMarker(locPosition, message: string) {
+      function displayMarker(locPosition) {
         const marker = new window.kakao.maps.Marker({
           map: map,
           position: locPosition,
         });
 
         const infowindow = new window.kakao.maps.InfoWindow({
-          content: message,
           removable: true,
         });
 
