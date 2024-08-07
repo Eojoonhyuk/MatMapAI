@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface KakaoMapProps {
   keyword: string;
@@ -48,5 +48,5 @@ export const KakaoMap = ({ keyword }: KakaoMapProps) => {
     });
   }, [keyword]);
 
-  return <div ref={mapRef} className="w-full h-screen" />;
+  return <div ref={mapRef} className="w-2/3 h-screen" />;
 };
