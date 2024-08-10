@@ -16,26 +16,24 @@ export const Answer = ({ answer }: AnswerProps) => {
   const recommenedFoods: RecommenedFoods = JSON.parse(answer);
 
   return (
-    <div className="flex flex-col gap-3">
-      <div>
-        <ul className="flex gap-3 flex-wrap w-96">
-          {recommenedFoods.foods.map((food) => (
-            <li
-              key={food}
-              className="w-fit border rounded-lg bg-slate-100 text-sm"
+    <>
+      <ul className="w-full flex gap-3 flex-wrap absolute z-10 p-3 top-14">
+        {recommenedFoods.foods.map((food) => (
+          <li
+            key={food}
+            className="w-fit border rounded-lg bg-slate-100 text-sm"
+          >
+            <button
+              className="p-2"
+              type="button"
+              onClick={() => setSelectedFood(food)}
             >
-              <button
-                className="p-2"
-                type="button"
-                onClick={() => setSelectedFood(food)}
-              >
-                {food}
-              </button>
-            </li>
-          ))}
-        </ul>
-        <KakaoMap keyword={selectedFood} />
-      </div>
-    </div>
+              {food}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <KakaoMap keyword={selectedFood} />
+    </>
   );
 };

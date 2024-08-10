@@ -1,52 +1,35 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Map, useKakaoLoader } from "react-kakao-maps-sdk";
+import useKakaoLoaderOrigin from "./use-kakao-loader";
 
 interface KakaoMapProps {
   keyword: string;
 }
 
 export const KakaoMap = ({ keyword }: KakaoMapProps) => {
-  const mapRef = useRef<HTMLDivElement>(null);
+  useKakaoLoaderOrigin();
 
-  useEffect(() => {
-    window.kakao.maps.load(() => {
-      const options = {
-        center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
-      };
-      const map = new window.kakao.maps.Map(mapRef.current, options);
+  const [center, setCenter] = useState({ lat: 33.450701, lng: 126.570667 });
+  const mapRef = useRef<HTMLElement>(null);
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
 
-          const locPostion = new window.kakao.maps.LatLng(lat, lon);
-
-          displayMarker(locPostion);
-        });
-      } else {
-        const locPosition = new window.kakao.maps.LatLng(33.450701, 126.570667);
-        displayMarker(locPosition);
-      }
-
-      function displayMarker(locPosition) {
-        const marker = new window.kakao.maps.Marker({
-          map: map,
-          position: locPosition,
-        });
-
-        const infowindow = new window.kakao.maps.InfoWindow({
-          removable: true,
-        });
-
-        infowindow.open(map, marker);
-
-        map.setCenter(locPosition);
-      }
+      setCenter({ lat: latitude, lng: longitude });
     });
-  }, [keyword]);
+  }
 
-  return <div ref={mapRef} className="w-2/3 h-screen" />;
+  useEffect(() => {}, [keyword]);
+
+  return (
+    <Map
+      center={center}
+      style={{ width: "100%", height: "100%", flexGrow: 1 }}
+      level={3}
+    />
+  );
 };

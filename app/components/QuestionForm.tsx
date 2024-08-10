@@ -11,8 +11,13 @@ export const QuestionForm = () => {
   const [answer, dispatch] = useFormState(createAnswer, "");
 
   return (
-    <form action={dispatch} className="flex flex-col gap-3">
-      <div className="flex gap-2 w-96	min-h-11 border border-solid border-#dfe1e5 rounded-3xl p-2">
+    <form
+      action={dispatch}
+      className={`w-full flex flex-col gap-3 items-center relative ${
+        answer ? "grow" : ""
+      }`}
+    >
+      <div className="w-96 min-h-11 flex gap-2 border border-solid border-#dfe1e5 rounded-3xl p-2">
         <TbZoom size={25} />
         <Textarea
           className="outline-none resize-none overflow-hidden grow px-2"
