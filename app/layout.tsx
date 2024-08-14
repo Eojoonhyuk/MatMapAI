@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mat Map",
+  title: "Mat Map AI",
   description: "당신의 음식 고민을 해결해줄 수 있는 서비스",
 };
 
