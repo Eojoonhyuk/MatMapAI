@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { KakaoMap } from "./KakaoMap";
-
 interface AnswerProps {
   answer: string;
 }
@@ -33,7 +31,6 @@ export const Answer = ({ answer }: AnswerProps) => {
           </li>
         ))}
       </ul>
-      <KakaoMap keyword={selectedFood} />
     </>
   );
 };
