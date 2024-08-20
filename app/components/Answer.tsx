@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Map } from "./Map";
 interface AnswerProps {
   answer: string;
 }
@@ -31,6 +32,7 @@ export const Answer = ({ answer }: AnswerProps) => {
           </li>
         ))}
       </ul>
+      <Map keyword={selectedFood} />
     </>
   );
 };

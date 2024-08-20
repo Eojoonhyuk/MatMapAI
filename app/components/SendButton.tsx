@@ -6,7 +6,7 @@ import { FaArrowCircleUp } from "react-icons/fa";
 export const SendButton = () => {
   const { pending } = useFormStatus();
   return (
-    <button className="" type="submit" disabled={pending}>
+    <button type="submit" disabled={pending}>
       <FaArrowCircleUp size={25} />
     </button>
   );
