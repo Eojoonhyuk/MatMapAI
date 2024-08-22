@@ -15,5 +15,5 @@ export function MapProvider({ children }: { children: ReactNode }) {
 
   if (!scriptLoaded) return <p>로딩 중입니다.</p>;
 
-  return <div className="w-full h-2 grow">{children}</div>;
+  return children;
 }

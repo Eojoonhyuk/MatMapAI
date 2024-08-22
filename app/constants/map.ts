@@ -1,6 +1,6 @@
 export const defaultMapContainerStyle = {
   width: "100%",
-  height: "100%",
+  flexGrow: 1,
 };
 
 export const defaultMapCenter = {
