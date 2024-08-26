@@ -14,6 +14,8 @@ import { Marker } from "./Marker";
 export const Map = ({ keyword }: { keyword: string }) => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [places, setPlaces] = useState<google.maps.places.Place[] | null>(null);
+  const [myLocation, setMyLocation] =
+    useState<google.maps.LatLngLiteral | null>(null);
 
   const onLoad = useCallback((map: google.maps.Map) => {
     setMap(map);
@@ -29,9 +31,17 @@ export const Map = ({ keyword }: { keyword: string }) => {
     )) as google.maps.PlacesLibrary;
     const request = {
       textQuery: text,
-      fields: ["displayName", "location"],
+      fields: [
+        "displayName",
+        "location",
+        "id",
+        "rating",
+        "photos",
+        "formattedAddress",
+        "userRatingCount",
+      ],
       locationBias: {
-        center: map?.getCenter() || defaultMapCenter,
+        center: myLocation || defaultMapCenter,
         radius: 2000,
       },
       includedType: "restaurant",
@@ -55,7 +65,7 @@ export const Map = ({ keyword }: { keyword: string }) => {
         if (place.location) bounds.extend(place.location);
       });
 
-      map?.setCenter(bounds.getCenter());
+      map?.fitBounds(bounds);
     } else {
       console.log("No results");
     }
@@ -68,11 +78,10 @@ export const Map = ({ keyword }: { keyword: string }) => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        map?.setCenter(myLocation);
-        map?.setZoom(16);
+        setMyLocation(myLocation);
       });
     }
-  }, [map]);
+  }, []);
 
   useEffect(() => {
     if (keyword) {
