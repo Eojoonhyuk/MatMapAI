@@ -8,23 +8,26 @@ export const Restaurant = ({
   const { photos, displayName, formattedAddress, rating, userRatingCount } =
     placeInformation;
   return (
-    <div className="flex flex-col gap-2">
-      {photos && (
-        <div style={{ maxHeight: "150px", overflow: "hidden" }}>
+    <div>
+      {photos && photos.length > 0 && (
+        <div style={{ width: "340px", maxHeight: "150px", overflow: "hidden" }}>
           <Image
             src={photos[0].getURI()}
             width={300}
             height={200}
             alt="장소 이미지"
-            style={{ objectFit: "cover", height: "100%" }}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
           />
         </div>
       )}
-      <p className="text-lg	">{displayName}</p>
-      <p className="">{formattedAddress}</p>
-      <div>
-        <span className="">{rating}</span>
-        <span className="">{userRatingCount}</span>
+      <div className="flex flex-col gap-2 p-2">
+        <p className="text-lg font-semibold">{displayName}</p>
+        <p className="font-medium">주소: {formattedAddress}</p>
+        <div className="font-medium">
+          <span>평점: </span>
+          <span>{rating}</span>
+          <span>({userRatingCount})</span>
+        </div>
       </div>
     </div>
   );
