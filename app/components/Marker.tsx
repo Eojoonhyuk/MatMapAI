@@ -15,13 +15,11 @@ export const Marker = ({ places }: { places: google.maps.places.Place[] }) => {
             <MarkerF
               key={place.id}
               position={place.location}
-              onClick={() => setSelectedPlaceId(place.id)}
+              onMouseOver={() => setSelectedPlaceId(place.id)}
+              onMouseOut={() => setSelectedPlaceId(null)}
             >
               {selectedPlaceId === place.id && (
-                <InfoWindowF
-                  position={place.location}
-                  onCloseClick={() => setSelectedPlaceId(null)}
-                >
+                <InfoWindowF position={place.location}>
                   <Restaurant placeInformation={place} />
                 </InfoWindowF>
               )}
