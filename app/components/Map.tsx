@@ -1,5 +1,3 @@
-"use client";
-
 import { MapProvider } from "@/providers/map-provider";
 import { GoogleMap } from "@react-google-maps/api";
 import { useCallback, useEffect, useState } from "react";
