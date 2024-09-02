@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaStar } from "react-icons/fa";
 
 export const Restaurant = ({
   placeInformation,
@@ -9,9 +10,9 @@ export const Restaurant = ({
     placeInformation;
   return (
     <div>
-      <div className="min-w-80 max-h-36 overflow-hidden">
+      <div className="w-80 h-36">
         <Image
-          className="w-full h-full object-cover"
+          className="w-full h-full"
           src={
             photos && photos.length > 0
               ? photos[0].getURI()
@@ -22,11 +23,11 @@ export const Restaurant = ({
           alt="장소 이미지"
         />
       </div>
-      <div className="flex flex-col gap-2 p-2">
+      <div className="w-80 flex flex-col gap-2 p-2">
         <p className="text-lg font-semibold">{displayName}</p>
-        <p className="font-medium">주소: {formattedAddress}</p>
-        <div className="font-medium">
-          <span>평점: </span>
+        <p className="font-medium">{formattedAddress}</p>
+        <div className="flex gap-1 font-medium">
+          <FaStar color="yellow" />
           <span>{rating}</span>
           <span>({userRatingCount})</span>
         </div>

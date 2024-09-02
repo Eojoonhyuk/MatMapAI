@@ -20,10 +20,12 @@ export const Answer = ({ answer }: AnswerProps) => {
         {recommenedFoods.foods.map((food) => (
           <li
             key={food}
-            className="w-fit border rounded-xl bg-white	text-sm font-medium"
+            className="w-fit border rounded-xl bg-white	text-sm font-medium shadow-lg"
           >
             <button
-              className="px-2 py-1"
+              className={`px-2 py-1 ${
+                food === selectedFood ? "text-blue-600 font-semibold" : ""
+              }`}
               type="button"
               onClick={() => setSelectedFood(food)}
             >

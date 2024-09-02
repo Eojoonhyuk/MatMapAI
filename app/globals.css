@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.gm-style-iw-chr {
-  @apply hidden;
-}
 .gm-style-iw-d {
   @apply p-0 overflow-auto !important;
 }
