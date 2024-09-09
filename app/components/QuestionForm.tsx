@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { createAnswer } from "../services/openai.action";
 import { Answer } from "./Answer";
 import { QuestionTextarea as Textarea } from "./QuestionTextarea";
