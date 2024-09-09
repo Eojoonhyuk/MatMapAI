@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
 
 type QuestionTextareaProps = {
   name: string;
@@ -12,14 +13,16 @@ export const QuestionTextarea = ({
   className,
 }: QuestionTextareaProps) => {
   const [content, setContent] = useState("");
+  const { pending } = useFormStatus();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+  const handlePressEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey && !pending) {
+      e.preventDefault();
+      const form = textareaRef.current?.form;
+      if (form) form.requestSubmit();
     }
-  }, [content]);
+  };
 
   return (
     <textarea
@@ -29,6 +32,7 @@ export const QuestionTextarea = ({
       placeholder={placeholder}
       value={content}
       onChange={(event) => setContent(event.target.value)}
+      onKeyDown={handlePressEnter}
       required
       rows={1}
     />
