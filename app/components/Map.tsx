@@ -8,6 +8,7 @@ import {
   defaultMapZoom,
 } from "../constants/map";
 import { Marker } from "./Marker";
+import { toast } from "react-toastify";
 
 export const Map = ({ keyword }: { keyword: string }) => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
@@ -65,7 +66,7 @@ export const Map = ({ keyword }: { keyword: string }) => {
 
       map?.fitBounds(bounds);
     } else {
-      console.log("No results");
+      toast("장소가 존재하지 않습니다.");
     }
   };
 
